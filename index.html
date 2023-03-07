@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Script Function</title>
+</head>
+<body>
+    <h1>Book List</h1>
+    <script>
+        const book =[
+        {"title" : "Bumi","price" : 45000},
+        {"title" : "Bulan","price" : 50000},
+        {"title" : "Matahari","price" : 40000},
+        {"title" : "Bintang","price" : 55000},
+        {"title" : "Komet","price" : 45000}
+        ]
+        console.log(book)
+
+        function list(){
+            for(x=0;x<book.length;x++){
+                document.write(x+1 + ". " + book[x].title + "<br>");
+            }
+        }
+        list();
+    </script>
+    <h3>Pembelian</h3>
+    <p>Judul buku :</p>
+    <p id="judul"></p>
+    <p>Total Discount :</p>
+    <p id="list"></p>
+
+
+    <script>
+        //discount
+        function purchase(detile,discount,tax){
+            var dprice,tprice,total;
+            console.log( "Book Title : " + detile.title)
+            console.log( "Price : " + detile.price)
+            console.log ( "Amount of Discount : " + discount)
+            console.log( "Amount of Tax : " + tax)
+             dprice = ((discount * detile.price)/100)
+             tprice = ((tax * detile.price)/100)
+            console.log("Price After tax : " + tprice )
+            total = detile.price + tprice - dprice
+            return total
+            document.getElementById("judul").innerHTML = book.title
+        }
+        document.getElementById("list").innerHTML = purchase(book[0],10,2)
+
+    </script>
+</body>
+</html>
