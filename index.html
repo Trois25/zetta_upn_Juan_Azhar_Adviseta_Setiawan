@@ -8,13 +8,14 @@
 </head>
 <body>
     <h1>Book List</h1>
+    <!-- Menampilkan List buku -->
     <script>
         const book =[
-        {"title" : "Bumi","price" : 45000},
-        {"title" : "Bulan","price" : 50000},
-        {"title" : "Matahari","price" : 40000},
-        {"title" : "Bintang","price" : 55000},
-        {"title" : "Komet","price" : 45000}
+        {"title" : "Bumi","price" : 45000,"stock" : 10},
+        {"title" : "Bulan","price" : 50000,"stock" : 15},
+        {"title" : "Matahari","price" : 40000,"stock" : 20},
+        {"title" : "Bintang","price" : 55000,"stock" : 10},
+        {"title" : "Komet","price" : 45000,"stock" : 15}
         ]
         console.log(book)
 
@@ -25,29 +26,50 @@
         }
         list();
     </script>
+
     <h3>Pembelian</h3>
     <p>Judul buku :</p>
     <p id="judul"></p>
-    <p>Total Discount :</p>
+    <p>Price After Discount and Tax :</p>
     <p id="list"></p>
 
-
+    <!-- Fungsi Pembelian Buku-->
     <script>
         //discount
-        function purchase(detile,discount,tax){
-            var dprice,tprice,total;
-            console.log( "Book Title : " + detile.title)
-            console.log( "Price : " + detile.price)
-            console.log ( "Amount of Discount : " + discount)
-            console.log( "Amount of Tax : " + tax)
-             dprice = ((discount * detile.price)/100)
-             tprice = ((tax * detile.price)/100)
-            console.log("Price After tax : " + tprice )
-            total = detile.price + tprice - dprice
-            return total
-            document.getElementById("judul").innerHTML = book.title
+        function purchase(detile,discount,tax,stock,amount){
+            var bprice=0,dprice,tprice,total;
+
+            //membandingkan banyaknya yang dibeli dengan stock
+            if(stock >= amount){
+                console.log( "Book Title : " + detile.title)
+                console.log( "Price : " + detile.price)
+                console.log ( "Amount of Discount : " + discount +"%")
+                console.log( "Amount of Tax : " + tax +"%")
+                console.log( "Book Stock : " + stock)
+             
+                //menghitung banyaknya buku yang dibeli menggunakan for
+                for(x = 0; x<amount;x++){
+                    bprice += detile.price
+                }
+
+                dprice = ((discount * bprice)/100)
+                tprice = ((tax * bprice)/100)
+                console.log("Discount Price : " + dprice ) 
+                console.log("Price For tax : " + tprice )
+
+                console.log("Buku yang dibeli sebanyak : " + amount)
+
+                console.log("Total harga buku sebelum diskon dan pajak: " + bprice);
+
+                total = bprice + tprice - dprice
+                return total
+            }else{
+                console.log("Stock buku yang tersedia tidak mencukupi")
+            }
+
+            document.getElementById("judul").innerHTML = detile.title
         }
-        document.getElementById("list").innerHTML = purchase(book[0],10,2)
+        document.getElementById("list").innerHTML = purchase(book[0],10,2,10,10)
 
     </script>
 </body>
