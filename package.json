@@ -1,0 +1,22 @@
+{
+  "name": "zetta_upn_juan_azhar_adviseta_setiawan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "function.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Trois25/zetta_upn_Juan_Azhar_Adviseta_Setiawan.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Trois25/zetta_upn_Juan_Azhar_Adviseta_Setiawan/issues"
+  },
+  "homepage": "https://github.com/Trois25/zetta_upn_Juan_Azhar_Adviseta_Setiawan#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

@@ -1,3 +1,4 @@
+
 const cart = [
     {title:"bintang", price:85000, author:"TereLiye"},
     {title:"bulan", price:80000, author:"TereLiye"},
@@ -69,3 +70,5 @@ function credit(total, duration, tax){
 }
 //purchasing(cart,30,10);
 credit(purchasing(cart,30,10),5,5)
+
+app.listen(3000);
