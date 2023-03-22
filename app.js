@@ -1,12 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const orderRoutes = require('./routes/order'); //export file routes
+const registerRoutes = require('./routes/registerBook'); //export file routes
+const orderBook = require('./routes/orderBook'); 
 
 const app = express();
 
+//use export route
 app.use(bodyParser.json());
+app.use(registerRoutes);
+app.use(orderBook);
 
-app.use(orderRoutes);//use export route
 
 app.listen(3000);
