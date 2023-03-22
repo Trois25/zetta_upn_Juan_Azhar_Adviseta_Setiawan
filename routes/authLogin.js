@@ -1,27 +1,20 @@
+require("dotenv").config()
+
 const checkAuth = (req, res, next) => {
-    //get the authorization header that was sent by the client
-    const auth = req.headers["authorization"];
+    const auth = req.headers["authorization"]; // header yang harus diketikkan di postman
+    
+    const userpass = auth.split(" ");//var userpass akan mensplit, jadi inputan di postman akan di bagi menadi array dibedakan dari spasi
   
-    /*
-    auth = "Basic <encoded username:password>"
-    get userpass via split and access index 1
-    */
-    const userpass = auth.split(" ")[1];
-  
-    //decode userpass to "username:password"
-    const text = Buffer.from(userpass, "base64").toString("ascii");
-  
-    //get username and password individually
-    const username = text.split(":")[0];
-    const password = text.split(":")[1];
-  
-    if (username == process.env.USERNAME && password == process.env.PASSWORD) 
+    const username = userpass[0] //Mengambil value array pertama dari userpass
+    const password = userpass[1] //mengambil value array kedua dari userpass
+
+    if (username == process.env.USER && password == process.env.PASSWORD) //process.env mengambil value dari .env
     {
-      //auth successful, access to the route is granted
-      return next();
+      return next();//melanjutkan ke process selanjutnya
     } else {
-      //username and password is wrong, auth unsuccessful
       return res.json("Access Denied.");
     }
   };
+
+  module.exports = checkAuth;
   

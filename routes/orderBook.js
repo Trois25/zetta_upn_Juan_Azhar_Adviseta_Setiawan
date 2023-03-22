@@ -5,7 +5,7 @@ const checkAuth = require('./authLogin')
 
 router.post('/buyBook',checkAuth,(req, res) => {
 
-    const{
+    let{
         title,
         bookPrice,
         tax,

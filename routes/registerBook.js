@@ -20,7 +20,7 @@ router.post('/add-order', (req, res) => { //method post dengan url add-order yan
 });
 
 router.get('/order', (res) => {
-    res.send(bookStorage);
+    //res.send(bookStorage);
 });
 
 
