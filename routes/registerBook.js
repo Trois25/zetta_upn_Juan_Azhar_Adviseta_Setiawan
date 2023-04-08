@@ -19,8 +19,8 @@ router.post('/add-order', (req, res) => { //method post dengan url add-order yan
     res.json({message : 'Successfully registered a book'}); //memberikan respon apabila berhasil mengirim data
 });
 
-router.get('/order', (res) => {
-    //res.send(bookStorage);
+router.get('/order', (req,res) => {
+    res.send(bookStorage);
 });
 
 
