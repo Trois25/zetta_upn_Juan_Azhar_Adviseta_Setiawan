@@ -31,6 +31,7 @@ router.post("/buyBook", checkAuth, (req, res) => {
         Itembuy, 
         duration } =
     req.body;
+    
     async function buyBook(discount, Itemamount, Itembuy, duration) {
       
         let result = 0,

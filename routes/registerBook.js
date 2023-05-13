@@ -23,5 +23,40 @@ router.get('/order', (req,res) => {
     res.send(bookStorage);
 });
 
+router.get('/readfile',(req,res) => {;
+    const fs = require('fs')
+    fs.readFile('test.txt', (err, inputD) => {
+   if (err) {
+    res.status(400).json({
+        status: 'Failed',
+        message: 'Failed to read file',
+    });
+   };
+   const result = inputD.toString()
+      res.status(200).json({
+        status: 'success',
+        message: 'Success to read file',
+        result
+    });
+})
+});
+
+router.get('/readfile-await',(req,res) => {;
+    const {readFile} = require('fs/promises');
+
+    const myFunction = async()=>{
+        const result = await readFile('test.txt','binary')
+        console.log(result)
+        res.status(200).json({
+            status: 'success',
+            message: 'Success to read file',
+            result
+        });
+    }
+
+    myFunction()
+
+});
+
 
 module.exports = router;
