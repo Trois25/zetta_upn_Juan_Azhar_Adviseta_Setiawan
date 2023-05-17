@@ -9,29 +9,36 @@ const bookStorage = [
         {id:4,title:"bumi", price:70000, author:"TereLiye"}
 ];
 
-//const addeddata = []
-const pushbook = new Set();
-const listbook = new Map(bookStorage);
-//const booklist = [...bookStorage,...addeddata]
+const addedbook = []
 
+function addObject(bookStorage,object) {
+    var idSet = new Set(bookStorage.map(obj => obj.id));
 
-router.post('/add-order', (req, res) => { //method post dengan url add-order yang menerima req dan res
-    bookStorage.push({  //menambahkan id, address, dan objek buku
-            id:req.body.id,
-            title:req.body.title,
-            price:req.body.price,
-            author:req.body.author,
+        if (!idSet.has(object.id)) {
+          bookStorage.push(object);
+          idSet.add(object.id);
+          console.log("Object added successfully.");
+        } else {
+          console.log("ID already exists. Object not added.");
+        }
+      
+}
+
+router.post('/add-order', (req, res) => { //method post dengan url add-order yang menerima req dan res  
+    addedbook.push({  //menambahkan id, address, dan objek buku
+        id:req.body.id,
+        title:req.body.title,
+        price:req.body.price,
+        author:req.body.author,
     });
-    pushbook.add(bookStorage)
-    console.log(pushbook)
-    listbook.set(bookStorage)
-    //console.log(listbook)
+
+    let data = addObject(bookStorage, addedbook)
+console.log(data);
 
     res.json({
         message : 'Successfully registered a book',
+        recentlyadded : addedbook,
         alldata : bookStorage,
-        setData : pushbook,
-        mapdata:listbook,
     }); //memberikan respon apabila berhasil mengirim data
 });
 
