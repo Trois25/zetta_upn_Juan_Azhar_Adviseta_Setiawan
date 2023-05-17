@@ -9,6 +9,12 @@ const bookStorage = [
         {id:4,title:"bumi", price:70000, author:"TereLiye"}
 ];
 
+//const addeddata = []
+const pushbook = new Set();
+const listbook = new Map(bookStorage);
+//const booklist = [...bookStorage,...addeddata]
+
+
 router.post('/add-order', (req, res) => { //method post dengan url add-order yang menerima req dan res
     bookStorage.push({  //menambahkan id, address, dan objek buku
             id:req.body.id,
@@ -16,7 +22,17 @@ router.post('/add-order', (req, res) => { //method post dengan url add-order yan
             price:req.body.price,
             author:req.body.author,
     });
-    res.json({message : 'Successfully registered a book'}); //memberikan respon apabila berhasil mengirim data
+    pushbook.add(bookStorage)
+    console.log(pushbook)
+    listbook.set(bookStorage)
+    //console.log(listbook)
+
+    res.json({
+        message : 'Successfully registered a book',
+        alldata : bookStorage,
+        setData : pushbook,
+        mapdata:listbook,
+    }); //memberikan respon apabila berhasil mengirim data
 });
 
 router.get('/order', (req,res) => {
