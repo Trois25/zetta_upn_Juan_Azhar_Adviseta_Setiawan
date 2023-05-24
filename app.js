@@ -1,18 +1,30 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
+const bodyParser = require('body-parser');
+const app = express();
+
+//assign route to the variable
 const registerRoutes = require('./routes/registerBook'); //export file routes
 const orderBook = require('./routes/orderBook'); 
-
-const app = express();
 
 //use export route
 app.use(bodyParser.json());
 app.use(registerRoutes);
 app.use(orderBook);
 
+//connect db and server
+mongoose.connect('mongodb://127.0.0.1:27017/BookList')
+.then(()=> {
 
-app.listen(3000);
+    app.listen(3000, ()=> {
+        console.log('listening on port 3000')
+    })
+
+    console.log('mongodb connect')
+}).catch((err) => {
+    console.log(err)
+})
 
 // const button = document.querySelector('button');
 // const output = document.querySelector('p');
