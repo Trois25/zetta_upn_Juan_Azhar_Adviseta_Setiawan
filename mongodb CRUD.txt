@@ -18,3 +18,10 @@ db.profile.updateOne({unique value},{$set:{yang mau diubah}})
 db.profile.updateMany({unique value},{$set:{yang mau diubah}})
 ct :
 db.profile.updateOne({nim:123200130}, {$set:{address:"Babarsari Jogjakarta"}})
+
+selain yang diatas buat CRUD bisa menggunakan yang ada didalam sini untuk filter dan operator: https://docs.mongodb.com/manual/reference/operator/query/
+
+contoh : 
+- db.booklist.find({"quantity": {$gt : 5}})
+- db.booklist.find({genres : "Fiction"})
+ 
